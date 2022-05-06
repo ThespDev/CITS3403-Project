@@ -1,0 +1,79 @@
+.title {
+    text-align: center;
+    color:white;
+    font-family: "Audiowide", sans-serif;
+}
+
+.menulink {
+    color: white;
+    margin:auto;
+}
+
+.col-sm-12 {
+    margin: auto
+}
+
+#background {
+    background-color: rgb(40, 6, 50)
+}
+
+.test-image {
+    text-align: center;
+}
+
+.info {
+    color: white;
+    text-align: center;
+    margin-bottom: 40px;
+    /* Just to get some separation between the keyboard and the guess counter */
+}
+
+ul li {
+    color: white;
+    margin-bottom: 30px;
+}
+
+#keyboard {
+    width: 100%;
+    position: relative;
+    bottom: 0;
+    text-align: center;
+   
+  }
+  
+  
+  .keyboardKey{
+    font-weight: bold;
+    margin: 0 3px 0 3px;
+    width: 10%;
+    height: 58px;
+    cursor: pointer;
+    flex: 1;
+    display: inline-block;
+    justify-content: center;
+    align-items: center;
+    text-transform: uppercase;
+    border-radius: 4px;
+  }
+  
+  .longerKeyboardKey{
+    font-weight: bold;
+    margin: 0 3px 0 3px;
+    height: 58px;
+    cursor: pointer;
+    flex: 1;
+    display: inline-block;
+    justify-content: center;
+    align-items: center;
+    text-transform: uppercase;
+    border-radius: 4px;
+  }
+  
+  
+  
+  .row{
+    display: inline-flex;
+    height: 33%;
+    width: 100%;
+    padding: 3px;
+  }

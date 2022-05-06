@@ -1,0 +1,99 @@
+<!-- Setting up the basic look of the page - including menu, sidebar, location for keyboard, etc -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- jQuery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+    <!-- Bootstrap elements -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+    <!-- CSS for Current page -->
+    <link rel = 'stylesheet' href = 'base.css'>
+
+    <!-- Access to Google Fonts - used for the title -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Audiowide">
+    
+    <title>Pixture Perfect</title>
+
+</head>
+<body id = 'background'>
+    <nav class="navbar navbar-inverse">
+        <div class="container-fluid">
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#"></a>
+          </div>
+          <div class="collapse navbar-collapse" id="myNavbar">
+            <ul class="nav navbar-nav">
+              <li class="active"><a href="#">Menu1</a></li>
+              <li><a href="#">Menu2</a></li>
+              <li><a href="#">Menu3</a></li>
+              <li><a href="#">Menu4</a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+              <li><a href="#"><span class="glyphicon glyphicon-share"></span> Share</a></li>
+              <li><a href="#"><span class="glyphicon glyphicon-cog"></span> Settings</a></li>
+            </ul>
+          </div>
+        </div>
+      </nav> 
+
+    <!-- Title div -->
+    <div class = 'container-fluid'>
+        <!-- Title -->
+        <h1 class = 'jumbotron title' style = 'background-color: rgb(40, 6, 50);'>Pixture Perfect</h1>
+    </div> 
+
+    <div class = 'container-fluid'>
+        <!-- Make first third of page empty -->
+        <div class = 'container col-sm-4' style = 'background-color: rgb(40, 6, 50);'></div>
+
+        <!-- Include all information in this div - middle div makes it easier to port to mobile -->
+        <div class = 'container col-sm-4'>
+
+            <!-- Div to put image into -->
+            <div class = 'test-image'>
+                <img class = 'test' src = 'https://img.pixers.pics/pho_wat(s3:700/FO/72/75/79/53/700_FO72757953_53111bda26c542fb0ab0c2afcd9b611f.jpg,700,559,cms:2018/10/5bd1b6b8d04b8_220x50-watermark.png,over,480,509,jpg)/stickers-happy-smiley-emoticon-face.jpg.jpg', width = 300, height = 300>
+            </div>
+
+            <!-- Div for guesses??? open to this changing -->
+            <div id = 'keyboard-div'>
+                <p class = 'info'>Guess x of y:</p>
+            </div>
+
+            <!-- Div for keyboard -->
+            <div id = 'keyboard'>
+
+            </div>
+        </div>
+
+        <!-- Third div empty (for now, will add sidebar later) -->
+        <div class = 'container col-sm-4' style = 'background-color: rgb(40, 6, 50);'>
+            <!-- Div where guesses will be stored -->
+            <div id = 'guesses'>
+                <!-- List of guesses -->
+                <ul class = guess_list>
+                    <li class = 'guess1'>Guess 1</li>
+                    <li class = 'guess2'>Guess 2</li>
+                    <li class = 'guess3'>Guess 3</li>
+                    <li class = 'guess4'>Guess 4</li>
+                    <li class = 'guess5'>Guess 5</li>
+                </ul>
+            </div>
+        </div>
+    
+    </div>
+    <script src="keyboard.js"></script>
+</body>
+</html>
