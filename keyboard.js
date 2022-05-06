@@ -6,8 +6,6 @@ const keyrow2 =
 const keyrow3 =
   ["submit", "z", "x", "c", "v", "b", "n", "m", "backspace"]
 
-const regex = new RegExp('[a-z]')
-
 let createKeyboard = () => {
   let keyboardDiv = document.getElementById("keyboard")
   for (let i = 0; i < 3; i++) {
@@ -19,7 +17,7 @@ let createKeyboard = () => {
     if (i == 0) {
       keyrow = keyrow1;
     }
-    else if (i == 1) {
+    else if (i == 1) {  
       keyrow = keyrow2;
     }
     else if (i == 2) {
@@ -39,9 +37,6 @@ let createKeyboard = () => {
       row.appendChild(btn);
     }
   }
-  console.log("creating keyboard")
 }
 
-console.log('a'.match(regex))
-
-document.addEventListener('LoadKeyboard', createKeyboard())
+document.addEventListener('loadKeyboard', createKeyboard())
