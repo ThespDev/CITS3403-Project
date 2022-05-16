@@ -1,0 +1,75 @@
+1652409174510	geckodriver	INFO	Listening on 127.0.0.1:58464
+1652409177554	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Mozilla Firefox\\firefox.exe" "--marionette" "--remote-debugging-port" "58465" "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "C:\\Users\\CAMERO~1\\AppData\\Local\\Temp\\rust_mozprofile0dDT0H"
+1652409177874	Marionette	INFO	Marionette enabled
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new NotFoundError("Could not open the file at C:\\Users\\CAMERO~1\\AppData\\Local\\Temp\\rust_mozprofile0dDT0H\\search.json.mozlz4", (void 0)))
+DevTools listening on ws://localhost:58465/devtools/browser/70c55c01-0694-4fa1-b921-113365e85c9b
+1652409179405	Marionette	INFO	Listening on port 58487
+Read port: 58487
+1652409179438	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+1652409373187	geckodriver	INFO	Listening on 127.0.0.1:58553
+1652409376219	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Mozilla Firefox\\firefox.exe" "--marionette" "--remote-debugging-port" "58554" "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "C:\\Users\\CAMERO~1\\AppData\\Local\\Temp\\rust_mozprofileVVQnL9"
+1652409376504	Marionette	INFO	Marionette enabled
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new NotFoundError("Could not open the file at C:\\Users\\CAMERO~1\\AppData\\Local\\Temp\\rust_mozprofileVVQnL9\\search.json.mozlz4", (void 0)))
+DevTools listening on ws://localhost:58554/devtools/browser/30cc2a95-c8dc-48bf-b0df-ffc61a59cc59
+1652409378099	Marionette	INFO	Listening on port 58579
+Read port: 58579
+1652409378193	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+1652409444057	geckodriver	INFO	Listening on 127.0.0.1:58623
+1652409447113	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Mozilla Firefox\\firefox.exe" "--marionette" "--remote-debugging-port" "58624" "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "C:\\Users\\CAMERO~1\\AppData\\Local\\Temp\\rust_mozprofileQaXNrN"
+1652409447402	Marionette	INFO	Marionette enabled
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new NotFoundError("Could not open the file at C:\\Users\\CAMERO~1\\AppData\\Local\\Temp\\rust_mozprofileQaXNrN\\search.json.mozlz4", (void 0)))
+DevTools listening on ws://localhost:58624/devtools/browser/2c6f0222-b312-4b01-a6bb-ed783b1b1507
+1652409448849	Marionette	INFO	Listening on port 58647
+Read port: 58647
+1652409448878	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+1652409456175	Marionette	WARN	TimedPromise timed out after 500 ms: stacktrace:
+TimedPromise/<@chrome://remote/content/marionette/sync.js:235:19
+TimedPromise@chrome://remote/content/marionette/sync.js:220:10
+interaction.flushEventLoop@chrome://remote/content/marionette/interaction.js:431:10
+webdriverClickElement@chrome://remote/content/marionette/interaction.js:179:31
+1652409598712	geckodriver	INFO	Listening on 127.0.0.1:58702
+1652409601748	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Mozilla Firefox\\firefox.exe" "--marionette" "--remote-debugging-port" "58703" "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "C:\\Users\\CAMERO~1\\AppData\\Local\\Temp\\rust_mozprofilefLMZfw"
+1652409602023	Marionette	INFO	Marionette enabled
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new NotFoundError("Could not open the file at C:\\Users\\CAMERO~1\\AppData\\Local\\Temp\\rust_mozprofilefLMZfw\\search.json.mozlz4", (void 0)))
+DevTools listening on ws://localhost:58703/devtools/browser/396e174a-9085-4d77-bd1b-54e4d2a4c9fd
+1652409603543	Marionette	INFO	Listening on port 58724
+Read port: 58724
+1652409603610	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+1652409869673	Marionette	INFO	Stopped listening on port 58724
+console.warn: TopSitesFeed: Failed to fetch data from Contile server: NetworkError when attempting to fetch resource.
+1652411577293	geckodriver	INFO	Listening on 127.0.0.1:59714
+1652411580348	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Mozilla Firefox\\firefox.exe" "--marionette" "--remote-debugging-port" "59715" "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "C:\\Users\\CAMERO~1\\AppData\\Local\\Temp\\rust_mozprofilecyrpxG"
+1652411580657	Marionette	INFO	Marionette enabled
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new NotFoundError("Could not open the file at C:\\Users\\CAMERO~1\\AppData\\Local\\Temp\\rust_mozprofilecyrpxG\\search.json.mozlz4", (void 0)))
+DevTools listening on ws://localhost:59715/devtools/browser/dc2b867d-0fdd-4ff9-acff-14374d2c6ce7
+1652411582266	Marionette	INFO	Listening on port 59738
+Read port: 59738
+1652411582326	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+console.error: services.settings: 
+  main/public-suffix-list Signature failed  InvalidSignatureError: Invalid content signature (main/public-suffix-list)
+console.error: services.settings: 
+  main/public-suffix-list local data was corrupted
+console.warn: services.settings: main/public-suffix-list Signature verified failed. Retry from scratch
+console.error: services.settings: 
+  main/public-suffix-list Signature failed again InvalidSignatureError: Invalid content signature (main/public-suffix-list)
+console.error: services.settings: 
+  Message: InvalidSignatureError: Invalid content signature (main/public-suffix-list)
+  Stack:
+    InvalidSignatureError@resource://services-settings/RemoteSettingsClient.jsm:135:5
+_validateCollectionSignature@resource://services-settings/RemoteSettingsClient.jsm:875:13
+
+console.error: services.settings: 
+  main/doh-providers Signature failed  InvalidSignatureError: Invalid content signature (main/doh-providers)
+console.error: services.settings: 
+  main/doh-providers local data was corrupted
+console.warn: services.settings: main/doh-providers Signature verified failed. Retry from scratch
+console.error: services.settings: 
+  main/search-config Signature failed  InvalidSignatureError: Invalid content signature (main/search-config)
+console.error: services.settings: 
+  main/search-config local data was corrupted
+console.warn: services.settings: main/search-config Signature verified failed. Retry from scratch
+1652412025254	Marionette	INFO	Stopped listening on port 59738
+console.warn: TopSitesFeed: Failed to fetch data from Contile server: NetworkError when attempting to fetch resource.
+
+###!!! [Parent][PGPUParent] Error: RunMessage(msgname=PGPU::Msg_ShutdownVR) Channel closing: too late to send/recv, messages will be lost
+
