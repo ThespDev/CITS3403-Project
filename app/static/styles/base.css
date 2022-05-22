@@ -4,6 +4,13 @@
   font-family: "Audiowide", sans-serif;
 }
 
+.subtitle {
+  text-align: center;
+  color:white;
+  font-family: "Smooch", sans-serif;
+}
+
+
 .menulink {
   color: white;
   margin:auto;
@@ -15,6 +22,10 @@
 
 .base-theme {
   background-color: rgb(34, 34, 34);
+}
+
+.light-theme {
+  background-color: rgb(220, 220, 220);
 }
 
 .maaz-theme {
@@ -52,7 +63,7 @@ ul li {
   margin-bottom: 30px;
 }
        
-#overlay, #share, #thanks, #outcome, #themes {
+#overlay, #share, #thanks, #outcome, #themes, #stats {
   position: fixed; /* Sit on top of the page content */
   display: none; /* Hidden by default */
   width: 100%; /* Full width (cover the whole page) */
@@ -66,7 +77,7 @@ ul li {
 }
 
 /* Design of the text in the in-game overlay. */
-#overlay-text, #share-text, #thanks-text, #outcome-text, #themes-text{
+#overlay-text, #share-text, #thanks-text, #outcome-text, #themes-text, #stats-text{
   background-color: rgb(40, 6, 50);
   padding: 10px;
   position: absolute;
@@ -81,7 +92,7 @@ ul li {
 }
 
 .collapsible {
-  background-color: rgb(50, 50, 50);
+  background-color: rgb(50, 50, 50, 0.4);
   color: white;
   cursor: pointer;
   padding: 18px;

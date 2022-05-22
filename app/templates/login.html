@@ -17,6 +17,7 @@
     <!-- CSS for Current page -->
     <!-- <link rel = 'stylesheet' href = "{{ url_for('static',filename='styles/base.css' ) }}"> -->
     <link rel = 'stylesheet' href = "../static/styles/base.css">
+    <link rel = 'stylesheet' href = "../static/styles/login.css">
 
     <!-- Access to Google Fonts - used for the title -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Audiowide">
@@ -24,7 +25,7 @@
 
     <!-- Function to display rules when clicking the settings button -->
     <!-- <script src = "{{url_for('static',filename = 'js/base.js')}}" ></script> -->
-    <script src = "../static/js/base.js" ></script>
+    <script src = "../static/js/login.js" ></script>
     
     <title>Pixel Perfect</title>
 
@@ -48,9 +49,9 @@
               <li onclick = 'onThemes()'><a href="#"><span class="glyphicon glyphicon-pencil"></span> Themes</a></li>
             </ul>
             <ul class = 'nav navbar-nav pull-right'>
-              <li><a href="login.html"><span class="glyphicon glyphicon-user"></span> Login</a></li>
-              <li><a onclick = 'onStats()'><span class="glyphicon glyphicon-stats"></span> Stats</a></li>
+                <li class = 'nav navbar-nav pull-right'><a href="base.html"><span class="glyphicon glyphicon-camera"></span> Play Game</a></li>
             </ul>
+            
           </div>
         </div>
       </nav> 
@@ -67,41 +68,18 @@
       </div>
     </div>
 
-    <!-- Share div - Where we will be able to provide sharable content -->
+    <!-- Share div -->
     <div id = 'share'>
-      <div id = 'share-text'>
-        <h1 class = 'title' style = 'margin: auto;'>Share</h1>
-        <br>
-        <p>Thank you for playing our game!</p>
-        <p>To share your score, tap enter or 'submit' and tap the share button in the overlay.</p>
-        <p>To share the website, click the button below.</p>
-        <p><button id="share-website" class = 'press-button'>Share</button></p>
-      </div>
-    </div>
-
-    <!-- Thanks div - explain the context behind the game blah blah -->
-    <div id = 'thanks' class = 'overlay-div'>
-      <div id = 'thanks-text'>
-        <h1 class = 'title' style = 'margin: auto;'>Thank you!</h1>
-        <br>
-        <p>Thank you for playing our game!</p>
-        <p>This game was made for CITS3403 Project 1</p>
-        <p>Please enjoy playing the game.</p>
-        <p>We appreciate any constructive feedback you may have.</p>
-      </div>
-    </div>
-
-    <!-- Outcome Div - Display when the player wins! (or loses) - needs to change based on outcome of game -->
-    <div id = 'outcome'>
-        <div id = 'outcome-text'>
-          <h1 class = 'title' id = 'outcome-title' style = 'margin: auto;'>You Win/Lose!</h1>
+        <div id = 'share-text'>
+          <h1 class = 'title' style = 'margin: auto;'>Share</h1>
           <br>
-          <p id = 'outcome-eval'>You got the correct answer in <span id = 'guess-count'>x</span> guesses!</p>
-          <br>
-          <p>Time until next picture: <span id = 'countdown-timer'>_____</span></p>
-          <p><button id="share-button" class = 'press-button'>Share</button></p>
+          <p>Thank you for playing our game!</p>
+          <p>To share your score, press enter in the input field (or submit on the keyboard).</p>
+          <p>To share the website, click the button below.</p>
+          <p></p>
+          <p><button id="share-site" class = 'press-button'>Share</button></p>
         </div>
-    </div>
+      </div>
 
     <!-- Thanks div - explain the context behind the game blah blah -->
     <div id = 'thanks' class = 'overlay-div'>
@@ -115,7 +93,7 @@
       </div>
     </div>
 
-    <!-- Themes div - Add your themes! -->
+    <!-- Thanks div - explain the context behind the game blah blah -->
     <div id = 'themes' class = 'overlay-div'>
       <div id = 'themes-text'>
         <h1 class = 'title' style = 'margin: auto;'>Themes</h1>
@@ -123,87 +101,39 @@
         <p>Select from a couple of themes!</p>
         <p>Made by different members of the team.</p>
         <p><button id = 'base-theme' class = 'press-button'>Base Theme</button></p>
-        <p><button id = 'light-theme' class = 'press-button'>Light Theme</button></p>
         <p><button id = 'maaz-theme' class = 'press-button'>Maaz Theme</button></p>
         <p><button id = 'cameron-theme' class = 'press-button'>Cameron Theme</button></p>
-      </div>
-    </div>
-
-    <!-- Stats div - Where all the stats are ez money -->
-    <div id = 'stats' class = 'overlay-div'>
-      <div id = 'stats-text'>
-        <h1 class = 'title' style = 'margin: auto;'>Stats</h1>
-        <br>
-        <h2 class = 'subtitle'>Current Streak: </h2><br>
-        <div id = 'current-streak'>
-          <!-- Put current streak stuff here -->
-        </div>
-        <h2 class = 'subtitle'>Best Streak: </h2><br>
-        <div id = 'best-streak'>
-          <!-- Put current streak here -->
-        </div>
-        <!-- Put best streak here -->
-        <h2 class = 'subtitle'>Guess Breakdown: </h2><br>
-        <div id = 'guess-breakdown'>
-          <!-- Put guess breakdown here -->
-        </div>
       </div>
     </div>
 
     <!-- Title div -->
     <div class = 'container-fluid'>
         <!-- Title -->
-        <h1 class = 'jumbotron title' id = 'main-title' style = 'background-color: rgb(40, 6, 50, 0);'>Pixel Perfect</h1>
+        <h2 class = 'subtitle'>Guess the daily picture in...</h2>
+        <h1 class = 'title' style = 'background-color: rgba(40, 6, 50, 0);'>Pixel Perfect</h1>
     </div> 
 
+
+    <!-- Content goes here -->
     <div class = 'container-fluid'>
-        <!-- Make first third of page empty -->
-        <div class = 'container col-sm-4' style = 'background-color: rgb(40, 6, 50, 0);'></div>
-
         <!-- Include all information in this div - middle div makes it easier to port to mobile -->
-        <div class = 'container col-sm-4'>
-            
-
-
-
-          
-            <!-- Div to put image into -->
-            <div class = 'test-image' > 
-                <img class = 'test' src = "{{url_for('static',filename = 'images/c.png')}}" width = 300, height = 300>
-                <!-- {{url_for('static',filename = 'images/c.png')}} -->
-            </div>
-            
-            
-
-            <div id = 'guesses' >
-              <input id = 'guesstxt' type="text" placeholder="         Say my name! " name = 'hello!'> 
-            </div>
-
-            <div id = 'error-div'>
-              ERROR: Remove all non-letter characters.
-            </div>
-            
-
-            <!-- Div for keyboard -->
-            <div id = 'keyboard'>
-
+        <div class="login-page">
+            <div class="form">
+                <form class="register-form">
+                    <input type="text" placeholder="name"/>
+                    <input type="password" placeholder="password"/>
+                    <input type="text" placeholder="email address"/>
+                    <button>create</button>
+                    <p class="message">Already registered? <a href="#">Sign In</a></p>
+                    </form>
+                    <form class="login-form">
+                    <input type="text" placeholder="username"/>
+                    <input type="password" placeholder="password"/>
+                    <button>login</button>
+                    <p class="message">Not registered? <a href="#">Create an account</a></p>
+                </form>
             </div>
         </div>
-
-        <!-- Third div with sidebar -->
-        <div class = 'container col-sm-4' style = 'background-color: rgba(40, 6, 50, 0);'>
-            <!-- Div where guesses will be stored -->
-            <div id = 'guess-sidebar'>
-                <!-- sidebar goes here: -->
-                <button class="collapsible">Guesses:</button>
-                <div id="guess-content" class = 'content'>
-                  
-                </div>
-            </div>
-        </div>
-    
     </div>
-    <!-- <script src="{{url_for('static',filename = 'js/keyboard.js')}}" ></script> -->
-    <script src="{{url_for('static',filename = 'js/keyboard.js')}}" ></script>
 </body>
 </html>
