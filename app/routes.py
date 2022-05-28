@@ -1,21 +1,12 @@
-
-from datetime import datetime
-from flask import render_template, url_for
-from app import app
-from flask import request
-from config import Config
+from flask import Blueprint,redirect, url_for, Config, render_template
 
 
+main = Blueprint('main', __name__)
 
-@app.route('/')
-@app.route('/index')
+@main.route('/')
+def main_index():
+    return 'Hello Blueprint'
+
+@main.route('/index')
 def index():
-    #print(datetime.now())
     return render_template('index.html')
-
-    
-    
-@app.route('/login.html')
-def login():
-    return render_template('login.html')
-
