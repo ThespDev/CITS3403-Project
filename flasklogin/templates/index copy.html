@@ -1,0 +1,204 @@
+<!-- Setting up the basic look of the page - including menu, sidebar, location for keyboard, etc -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- jQuery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+    <!-- Bootstrap elements -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+    <!-- CSS for Current page -->
+    <!-- <link rel = 'stylesheet' href = "{{ url_for('static',filename='styles/base.css' ) }}"> -->
+    <link rel = 'stylesheet' href = "{{ url_for('static',filename='styles/base.css' ) }}">
+
+    <!-- Access to Google Fonts - used for the title -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Audiowide">
+    <link href="https://fonts.googleapis.com/css2?family=Smooch&display=swap" rel="stylesheet"> 
+
+    <!-- Function to display rules when clicking the settings button -->
+    <script src = "{{url_for('static',filename = 'js/index.js')}}"></script>
+    
+    <title>Pixel Perfect</title>
+
+</head>
+<body id = 'background' class = 'base-theme'>
+  <div id = 'nav'>
+    <nav class="navbar navbar-inverse">
+        <div class="container-fluid">
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar" id = 'hamburger'>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#"></a>
+          </div>
+          <div class="collapse navbar-collapse" id="myNavbar">
+            <ul class="nav navbar-nav">
+              <li onclick = 'onShare()'><a href="#"><span class="glyphicon glyphicon-share"></span> Share</a></li>
+              <li onclick = 'onRules()'><a><span class="glyphicon glyphicon-question-sign"></span> Rules</a></li>
+              <li onclick = 'onThanks()'><a href="#"><span class="glyphicon glyphicon-heart"></span> Thanks!</a></li>
+              <li onclick = 'onThemes()'><a href="#"><span class="glyphicon glyphicon-pencil"></span> Themes</a></li>
+            </ul>
+            <ul class = 'nav navbar-nav pull-right'>
+              <li><a href="{{ url_for('login') }}"><span class="glyphicon glyphicon-user"></span> Login</a></li>
+              <li><a onclick = 'onStats()'><span class="glyphicon glyphicon-stats"></span> Stats</a></li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+    </div> 
+    
+    <!-- Information Div - Where the rules of the game will be explained. -->
+    <div id = 'overlay' class = 'overlay-div'>
+      <div id = 'overlay-text'>
+        <h1 class = 'title' style = 'margin: auto;'>Rules</h1>
+        <br>
+        <p>You have 5 attempts to guess the content of the photo.</p>
+        <p>For every wrong guess you make, the photo will become less blurry!</p>
+        <p>This game was made for CITS3401 project 1.</p>
+        <p>Click anywhere to return to the main page.</p>
+      </div>
+    </div>
+
+    <!-- Share div - Where we will be able to provide sharable content -->
+    <div id = 'share'>
+      <div id = 'share-text'>
+        <h1 class = 'title' style = 'margin: auto;'>Share</h1>
+        <br>
+        <p>Thank you for playing our game!</p>
+        <p>To share your score, tap enter or 'submit' and tap the share button in the overlay.</p>
+        <p>To share the website, click the button below.</p>
+        <p><button id="share-website" class = 'press-button'>Share</button></p>
+      </div>
+    </div>
+
+    <!-- Thanks div - explain the context behind the game blah blah -->
+    <div id = 'thanks' class = 'overlay-div'>
+      <div id = 'thanks-text'>
+        <h1 class = 'title' style = 'margin: auto;'>Thank you!</h1>
+        <br>
+        <p>Thank you for playing our game!</p>
+        <p>This game was made for CITS3403 Project 1</p>
+        <p>Please enjoy playing the game.</p>
+        <p>We appreciate any constructive feedback you may have.</p>
+      </div>
+    </div>
+
+    <!-- Outcome Div - Display when the player wins! (or loses) - needs to change based on outcome of game -->
+    <div id = 'outcome'>
+        <div id = 'outcome-text'>
+          <h1 class = 'title' id = 'outcome-title' style = 'margin: auto;'>You Win/Lose!</h1>
+          <br>
+          <p id = 'outcome-eval'>You got the correct answer in <span id = 'guess-count'>x</span> guesses!</p>
+          <br>
+          <p>Time until next picture: <span id = 'countdown-timer'>_____</span></p>
+          <p><button id="share-button" class = 'press-button'>Share</button></p>
+        </div>
+    </div>
+
+    <!-- Thanks div - explain the context behind the game blah blah -->
+    <div id = 'thanks' class = 'overlay-div'>
+      <div id = 'thanks-text'>
+        <h1 class = 'title' style = 'margin: auto;'>Thank you!</h1>
+        <br>
+        <p>Thank you for playing our game!</p>
+        <p>This game was made for CITS3403 Project 1</p>
+        <p>Please enjoy playing the game.</p>
+        <p>We appreciate any constructive feedback you may have.</p>
+      </div>
+    </div>
+
+    <!-- Themes div - Add your themes! -->
+    <div id = 'themes' class = 'overlay-div'>
+      <div id = 'themes-text'>
+        <h1 class = 'title' style = 'margin: auto;'>Themes</h1>
+        <br>
+        <p>Select from a couple of themes!</p>
+        <p>Made by different members of the team.</p>
+        <p><button id = 'base-theme' class = 'press-button'>Base Theme</button></p>
+        <p><button id = 'light-theme' class = 'press-button'>Light Theme</button></p>
+        <p><button id = 'maaz-theme' class = 'press-button'>Maaz Theme</button></p>
+        <p><button id = 'cameron-theme' class = 'press-button'>Cameron Theme</button></p>
+      </div>
+    </div>
+
+    <!-- Stats div - Where all the stats are ez money -->
+    <div id = 'stats' class = 'overlay-div'>
+      <div id = 'stats-text'>
+        <h1 class = 'title' style = 'margin: auto;'>Stats</h1>
+        <br>
+        <h2 class = 'subtitle'>Current Streak: </h2><br>
+        <div id = 'current-streak'>
+          <!-- Put current streak stuff here -->
+        </div>
+        <h2 class = 'subtitle'>Best Streak: </h2><br>
+        <div id = 'best-streak'>
+          <!-- Put current streak here -->
+        </div>
+        <!-- Put best streak here -->
+        <h2 class = 'subtitle'>Guess Breakdown: </h2><br>
+        <div id = 'guess-breakdown'>
+          <!-- Put guess breakdown here -->
+        </div>
+      </div>
+    </div>
+
+    <!-- Title div -->
+    <div class = 'container-fluid'>
+        <!-- Title -->
+        <h1 class = 'jumbotron title' id = 'main-title' style = 'background-color: rgb(40, 6, 50, 0);'>Pixel Perfect</h1>
+    </div> 
+
+    <div class = 'container-fluid'>
+        <!-- Make first third of page empty -->
+        <div class = 'container col-sm-4' style = 'background-color: rgb(40, 6, 50, 0);'></div>
+
+        <!-- Include all information in this div - middle div makes it easier to port to mobile -->
+        <div id = 'content-div' class = 'container col-sm-4'>
+            <!-- Div to put image into -->
+            <div class = 'test-image'> 
+                <img class = 'test' src = "{{url_for('static',filename = 'images/tmp/1.png')}}" width = 300 height = 300>
+                <!-- {{url_for('static',filename = 'images/c.png')}} -->
+            </div>
+            
+            
+
+            <div id = 'guesses' >
+              <input id = 'guesstxt' type="text" placeholder="         Say my name! " name = 'hello!'> 
+            </div>
+
+            <div id = 'error-div'>
+              ERROR: Remove all non-letter characters.
+            </div>
+            
+
+            <!-- Div for keyboard -->
+            <div id = 'keyboard'></div>
+        </div>
+
+        <!-- Third div with sidebar -->
+        <div class = 'container col-sm-4' style = 'background-color: rgba(40, 6, 50, 0);'>
+            <!-- Div where guesses will be stored -->
+            <div id = 'guess-sidebar'>
+                <!-- sidebar goes here: -->
+                <button class="collapsible">Guesses:</button>
+                <div id="guess-content" class = 'content'>
+                  
+                </div>
+            </div>
+        </div>
+    
+    </div>
+    <!-- <script src="{{url_for('static',filename = 'js/keyboard.js')}}" ></script> -->
+    <script src="{{url_for('static',filename = 'js/keyboard.js')}}" ></script>
+</body>
+</html>
+

@@ -20,9 +20,7 @@ __pycache__/
 *.sln.docstates
 # C extensions
 *.so
-<<<<<<< HEAD
 # VS Code files for those working on multiple tools
-=======
 # Local History for Visual Studio Code
 .history/
 
@@ -42,7 +40,6 @@ __pycache__/
 # C extensions
 *.so
 # vs code
->>>>>>> eb7d238d7988a56c5cba1cc73ba357c8dd20a792
 .vscode/*
 !.vscode/settings.json
 !.vscode/tasks.json

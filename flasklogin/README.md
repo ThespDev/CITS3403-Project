@@ -17,14 +17,14 @@ CITS3403
 * 
 * How does the Front-End request what Photo to pick from in the backend
 
+#Create History Database
+
 
 #Creating Request Database to route
-- [ ] Create 
-- [ ] Allow Game to query img data from datbase
+- [X] Create 
+- [X] Allow Game to query img data from datbase
 
-
-- [ ] Replace Multiple 
-- [ ] 
+- [ ] Allow Route to get Image from HTML
 
 
 https://github.com/Vuka951/tutorial-code/tree/master/flask-file-upload
@@ -36,6 +36,7 @@ pip install flask_wtf
 pip install sqlalchemy
 pip install email_validator
 pip install flask_login
+pip install pillow
 
 
 linux install

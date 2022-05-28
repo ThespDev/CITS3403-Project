@@ -1,0 +1,355 @@
+#nav {
+  position: static;
+  z-index: 9999;
+}
+
+#myNavbar{
+  background-color: rgb(39, 39, 39);
+  border-radius: 10px;
+  position: static;
+  z-index: 300;
+}
+
+#dropdown-list {
+  background-color: rgb(39, 39, 39);
+  padding: 10px;
+  border-radius: 10px;
+  position: static;
+  z-index: 200;
+}
+
+.list-item {
+  background-color: rgb(39, 39, 39);
+  z-index: 500;
+  border-radius: 10px;
+  position: static;
+  z-index: 100;
+}
+
+.title {
+  text-align: center;
+  color:white;
+  font-family: "Audiowide", sans-serif;
+  z-index: 1;
+}
+
+.subtitle {
+  text-align: center;
+  color:white;
+  font-family: "Smooch", sans-serif;
+}
+
+
+.menulink {
+  color: white;
+  margin:auto;
+}
+
+.col-sm-12 {
+  margin: auto
+}
+
+.base-theme {
+  background-color: rgb(34, 34, 34);
+}
+
+.light-theme {
+  background-color: rgb(220, 220, 220);
+}
+
+.maaz-theme {
+  background-image: url(hello.jpg);
+  opacity: 0.95;
+}
+
+.cameron-theme {
+  background: rgb(32,0,36);
+  background: linear-gradient(19deg, rgba(32,0,36,1) 0%, rgba(74,4,75,1) 37%, rgba(111,8,108,1) 60%, rgba(156,13,149,1) 84%, rgba(201,18,189,1) 100%);
+}
+
+.test-image {
+  display: flex;
+  justify-content: space-around;
+  width: max-content;
+  margin: auto;
+  z-index: 1;
+}
+
+
+
+.info {
+  color: white;
+  text-align: center;
+  margin-bottom: 40px;
+  /* Just to get some separation between the keyboard and the guess counter */
+}
+
+ul li {
+  color: white;
+}
+
+.col-sm-4 {
+  position: static;
+  z-index: 1;
+}
+       
+#overlay, #share, #thanks, #outcome, #themes, #stats {
+  position: fixed; /* Sit on top of the page content */
+  display: none; /* Hidden by default */
+  width: 100%; /* Full width (cover the whole page) */
+  height: 100%; /* Full height (cover the whole page) */
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0,0,0,0.5); /* Black background with opacity */
+  z-index: 5000;
+}
+
+/* Design of the text in the in-game overlay. */
+#overlay-text, #share-text, #thanks-text, #outcome-text, #themes-text, #stats-text{
+  background-color: rgb(40, 6, 50);
+  padding: 10px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  font-size: 12px;
+  color: white;
+  transform: translate(-50%,-50%);
+  -ms-transform: translate(-50%,-50%);
+  border-radius: 10px;
+  border: 2px solid rgb(141, 13, 180);
+}
+
+.collapsible {
+  background-color: rgb(50, 50, 50, 0.4);
+  color: white;
+  cursor: pointer;
+  padding: 18px;
+  width: 100%;
+  border: none;
+  text-align: left;
+  outline: none;
+  font-size: 15px;
+  border: 2px solid black;
+  border-radius: 10px;
+  
+}
+
+.active, .collapsible:hover {
+  background-color: rgba(24, 12, 94, 0.441);
+}
+
+.collapsible:after {
+  content: '\002B';
+  color: white;
+  font-weight: bold;
+  float: right;
+  margin-left: 5px;
+}
+
+.active:after {
+  content: "\2212";
+}
+
+.content {
+  padding: 0 18px;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.2s ease-out;
+  background-color: #f1f1f1;
+}
+
+.guess {
+    padding: 10px 5px;
+    margin: auto;
+    text-align: left;
+}
+
+.navbar.navbar-inverse{
+  height: 40px;
+
+}
+
+#guesstxt
+{ 
+  background-image: url(./text.gif);
+    color: #ffffff;
+    
+    width: 173px;
+    height: 56px;
+    background-size: contain;
+    opacity: 1;
+    border: rgba(0,0,0,0.5);
+    border-radius: 5px;
+    background-repeat: no-repeat;
+    padding: 5px;
+    box-shadow: inset 0 0 0 2px black;
+/*-webkit-background-clip: content-box;
+   -moz-background-clip: content-box;
+    background-clip: content-box;*/
+
+
+}
+.guesstext:hover {
+  box-shadow: inset 0 0 0 2px red;
+}
+
+
+
+
+#keyboard {
+  width: 100%;
+  position: relative;
+  text-align: center;
+ 
+}
+
+
+.keyboardKey{
+  background-size: contain;
+  opacity: 0.95;
+  font-weight:bold;
+  font-size:medium;
+  display: flex;
+  margin: 0 3px 0 3px;;
+  width: 12%;
+  max-width: 80px;
+  height: 58px;
+  cursor: pointer;
+  flex: 1 1;
+  justify-content: center;
+  align-items: center;
+  text-transform: uppercase;
+  border-color:black;
+  border-radius: 20px;
+}
+
+.longerKeyboardKey{
+  border-color:black;
+
+  font-weight: bold;
+  max-width: 120px;
+  display: flex;
+  width:20%;
+  margin: 0 3px 0 3px;
+  height: 58px;
+  cursor: pointer;
+  flex: 1 1;
+  justify-content: center;
+  align-items: center;
+  text-transform: uppercase;
+  border-radius: 50% 20% / 10% 40%;;
+}
+
+.row{
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  padding: 3px;
+  
+  font-size: 1rem;
+  
+}
+
+/* Adding a fade effect to any elements we want through this class name */
+
+.fade-in {
+  animation: fadeIn ease 0.1s;
+  -webkit-animation: fadeIn ease 0.1s;
+  -moz-animation: fadeIn ease 0.1s;
+  -o-animation: fadeIn ease 0.1s;
+  -ms-animation: fadeIn ease 0.1s;
+
+}@keyframes fadeIn {
+  0% {
+    opacity:0;
+  }
+  100% {
+    opacity:1;
+  }
+}
+
+@-moz-keyframes fadeIn {
+  0% {
+    opacity:0;
+  }
+  100% {
+    opacity:1;
+  }
+}
+
+@-webkit-keyframes fadeIn {
+  0% {
+    opacity:0;
+  }
+  100% {
+    opacity:1;
+  }
+}
+
+@-o-keyframes fadeIn {
+  0% {
+    opacity:0;
+  }
+  100% {
+    opacity:1;
+  }
+}
+
+@-ms-keyframes fadeIn {
+  0% {
+    opacity:0;
+  }
+  100% {
+    opacity:1;
+}
+
+}
+
+#guesses {
+  
+display: block;
+text-align: center;
+margin: 20px
+}
+
+#submit-guesses {
+display: inline-block;
+margin: auto;
+text-align: left;
+}
+
+.press-button {
+background-color: rgba(218, 36, 164, 0.701);
+border-radius: 8px;
+border-width: 0;
+color: #ffffff;
+cursor: pointer;
+display: inline-block;
+font-family: "Haas Grot Text R Web", "Helvetica Neue", Helvetica, Arial, sans-serif;
+font-size: 14px;
+font-weight: 500;
+line-height: 20px;
+list-style: none;
+margin: 0;
+padding: 10px 13px;
+text-align: center;
+transition: all 100ms;
+vertical-align: baseline;
+white-space: nowrap;
+user-select: none;
+-webkit-user-select: none;
+touch-action: manipulation;
+}
+
+#error-div {
+  display: inline block;
+  visibility: hidden;
+  margin: auto;
+  color: white;
+  background-color: rgb(180, 18, 18);
+  border-radius: 10px;
+  size: 12px;
+  text-align: center;
+}
