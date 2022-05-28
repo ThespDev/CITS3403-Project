@@ -1,8 +1,10 @@
-from db import db
+# from database import db
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy.sql import func
 from datetime import datetime
 from flask_login import UserMixin
+# from . import db
+from .database import db
 
 
 #Image to Player-Hist One to Many
@@ -21,14 +23,16 @@ class User_Hist(db.Model): #Stores every session for a player
     username = db.Column(db.String, nullable=False) #use Username to return results for that username
     answer_history = db.Column(db.String, nullable=False) #Have Large Sequence
     answer_count = db.Column(db.Integer, nullable=False)
-    
-    img_id = db.Column(db.Integer, Foreignkey=("images.id"))
+    date_submitted = db.Column(db.DateTime, default=datetime.utcnow, server_default=func.now())
+
+    #parent object
+    img_id = db.Column(db.Integer, db.ForeignKey('images.id'))
     
 
     #Add img_name and Change Img Id as FK
 
     # img_id = db.Column(db.Integer, ForeignKey=("ImageTable.id"), primary_key=True)
-    date_submitted = db.Column(db.DateTime, default=datetime.utcnow, server_default=func.now())
+    
 
 class Images(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -37,5 +41,4 @@ class Images(db.Model):
 
     #SQLITE Doesnt have DATE TYP. SQLALCHEMY Uses python Datetime then just cut it off.
     date = db.Column(db.DateTime, default=datetime.utcnow())
-
-    usr_hst = db.relationship("User_Hist")
+    user_hist = db.relationship("User_Hist")

@@ -2,12 +2,12 @@ from crypt import methods
 from dbm import dumb
 from distutils.log import debug
 from email.policy import default
-import email
 from enum import unique
 from fileinput import filename
-import mimetypes
 from operator import truediv
 from socket import IOCTL_VM_SOCKETS_GET_LOCAL_CID
+from time import timezone
+from unicodedata import name
 from flask import (
     Flask,
     g,
@@ -23,18 +23,26 @@ import base64
 import io
 
 from flask_bootstrap import Bootstrap
-from flask_sqlalchemy import SQLAlchemy
-from flask_wtf import FlaskForm
-from wtforms import StringField, PasswordField, BooleanField
-from wtforms.validators import InputRequired, Email, Length
 from werkzeug.security import generate_password_hash, check_password_hash
-import datetime
 from werkzeug.utils import secure_filename
 from flask_login import LoginManager, UserMixin, login_user, login_required, logout_user, current_user
 from datetime import datetime
 
+#Flask DB
+from flask_sqlalchemy import SQLAlchemy
+from flask_migrate import Migrate
+from sqlalchemy.sql import func
+
+
+#Py Files
+
 #FORM CLASSES
 #------------------
+#WILL BREAK IF I MOVE IT TO ANOTHER FILE
+from wtforms import StringField, PasswordField, BooleanField
+from wtforms.validators import InputRequired, Email, Length
+from flask_wtf import FlaskForm
+
 class LoginForm(FlaskForm):
     username = StringField('username', validators=[InputRequired(), Length(min=4, max=15)])
     password = PasswordField('password',validators=[InputRequired(), Length(min=8, max=40)])
@@ -47,8 +55,13 @@ class RegisterForm(FlaskForm):
 
 #---------------
 
+
+
+
+
+
 # DATABASE_PATH = '/home/seand/Documents/git/CITS3403-Project/flasklogin'
-DATABASE_PATH = '/home/seand/Documents/gitrepo/CITS3403-Project/flasklogin'
+DATABASE_PATH = '/home/seandre/Documents/git/CITS3403-Project/flasklogin'
 
 app = Flask(__name__)
 Bootstrap(app)
@@ -58,7 +71,7 @@ db = SQLAlchemy(app)
 login_manager =LoginManager()
 login_manager.init_app(app)
 login_manager.login_view  = 'login'
-
+migrate = Migrate(app,db)
 
 #Database Models
 #------------------
@@ -77,20 +90,38 @@ class Player_History(db.Model): #Stores every session for a player
     answer_history = db.Column(db.String, nullable=False) #Have Large Sequence
     answer_count = db.Column(db.Integer, nullable=False)
     img_id = db.Column(db.Integer, nullable=False)
-    date_submitted = db.Column(db.DateTime, nullable=True)
+    # img_id = db.Column(db.Integer, ForeignKey=("ImageTable.id"), primary_key=True)
+    date_submitted = db.Column(db.DateTime, default=datetime.utcnow, server_default=func.now())
+
+    # imagetable = db.relationship('ImageTable', foreign_keys='Player_History.img_id.id')
+    # playerhist = db.relationship('ImageTable', foreign_keys='Player_History.Player_History.id')
+
+    # imagetable = db.relationship('ImageTable', foreign_keys='Player_History.img_id.id', lazy='joined')
+    # playerhist = db.relationship('ImageTable', foreign_keys='Player_History.Player_History.id', lazy='joined')
+
+#Populates Images with Image Data
+def image_loader():
+    #Get Listdir of images in an array.
+    #Parse img array with each index increasing date of todays date
+    #commit changes and check with sqlite
+    print(f'Task Complete')
 
 
-class ImageTable(db.Model):
+
+
+class Images(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    imageName = db.Column(db.String, unique=True, nullable=False)
+    name = db.Column(db.String, unique=True, nullable=False)
     answer = db.Column(db.String, unique=True, nullable=False)
-    # mimetypes = db.Column(db.Text, nullable=False)
 
-# class DateTable(db.Model):
+    #SQLITE Doesnt have DATE TYP. SQLALCHEMY Uses python Datetime then just cut it off.
+    date = db.Column(db.DateTime, default=datetime.utcnow())
 
 
-#Insert some basic images into  
+#----------------------------
 
+
+ 
 
 
 @app.route('/signup', methods=['GET','POST'])
@@ -108,6 +139,7 @@ def signup():
         #Some arbritray response
         return '<h1> Successfully added New User! </h1>'
     return render_template('signup.html', form=form)
+
 
 
 #Create User Loader, Connection to flask login and actual database
@@ -138,29 +170,6 @@ def login():
     #not submitted render template
     return render_template('login.html', form=form) # Pass form to template for form object to be used in login.html
 
-#Create some Rows for Player historyw 
-
-# def dateNow():
-#     today = datetime.datetime.now()
-#     date_time = today.strftime("%Y-%m-%d %H:%M:%S")
-#     return date_time
-shit = "2022-05-23 23:33:40"
-# datetime.datetime.now()
-def Dump():
-    for _ in range(1):
-        hist = Player_History(
-                    username="Testings", 
-                    answer_history= "Taj Mahal|Reeses Puff|Grand Canyon|St. Petersburg",
-                    answer_count = 4,
-                    img_id = 11, 
-                    date_submitted= datetime.datetime.now()
-                    )
-                    
-        db.session.add(hist)
-        db.session.commit()
-
-# Dump()
-
 
 #Cannot Access Dashboard without login
 @app.route('/dashboard')
@@ -172,17 +181,16 @@ def dash():
 
 
 
-
-
-
-#OS Path
-# picfolder = os.path.join('static','images')
-# print(picfolder)
-
 app.config['UPLOAD_FOLDER'] = os.getcwd()+"/static/images"
-    
 
-# # Insert One Row
+#if cd in flasklogin
+loc = "/static/images"
+
+images = os.listdir(os.getcwd()+loc)
+
+
+
+# # Insert One Rows
 # IMG_PATH = "/images/Colosseum.jpg"
 # IMG_ANSWER = "Colosseum"
 # #Creating Simple  Basic image with imagepath
@@ -190,10 +198,16 @@ app.config['UPLOAD_FOLDER'] = os.getcwd()+"/static/images"
 # db.session.add(img)
 # db.session.commit()
 
-for index in range(5):
-    hist = Player_History(username='Tester123',answer_history=str(index), answer_count=1, img_id=2, date_submitted = datetime.utcnow())
-    db.session.add(hist)
-    db.session.commit()
+def populate():
+    for index in range(5):
+        hist = Player_History(username='Tester123',answer_history=str(index), answer_count=1, img_id=2, date_submitted = datetime.utcnow())
+        db.session.add(hist)
+        db.session.commit()
+
+    for img in images:
+        image = ImageTable(imageName=img,answer=img[:-4],)
+
+
 
 
 #Need to find way to Dynamicly update Image to other Images as it changes
