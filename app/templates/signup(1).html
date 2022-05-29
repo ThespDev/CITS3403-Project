@@ -1,0 +1,216 @@
+<!-- Setting up the basic look of the page - including menu, sidebar, location for keyboard, etc -->
+{% import "bootstrap/wtf.html" as wtf %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- jQuery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+    <!-- Bootstrap elements -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+    <!-- CSS for Current page -->
+    <!-- <link rel = 'stylesheet' href = "{{ url_for('static',filename='styles/base.css' ) }}"> -->
+    <link rel = 'stylesheet' href = "{{ url_for('static',filename='styles/base.css' ) }}">
+    <link rel = 'stylesheet' href = "{{ url_for('static',filename='styles/login.css' ) }}">
+
+    <!-- Access to Google Fonts - used for the title -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Audiowide">
+    <link href="https://fonts.googleapis.com/css2?family=Smooch&display=swap" rel="stylesheet"> 
+    <link href="https://fonts.googleapis.com/css2?family=Odibee+Sans&display=swap" rel="stylesheet">  
+
+    <!-- Function to display rules when clicking the settings button -->
+    <!-- <script src = "{{url_for('static',filename = 'js/base.js')}}" ></script> -->
+    <script src = "{{url_for('static',filename = 'js/login.js')}}" ></script>
+
+
+    
+    <title>Pixel Perfect: Login</title>
+
+</head>
+<body id = 'background' class = 'base-theme'>
+  <ul>
+    <li><a onclick = 'onShare()'><span class="glyphicon glyphicon-share"></span></a></li>
+    <li><a onclick = 'onRules()' id = 'rulebutton'><span class="glyphicon glyphicon-question-sign"></span></a></li>
+    <li><a onclick = 'onThanks()'><span class="glyphicon glyphicon-heart"></span></a></li>
+    <li><a onclick = 'onThemes()'><span class="glyphicon glyphicon-pencil"></span></a></li>
+    <li><a onclick = 'onStats()'><span class="glyphicon glyphicon-dashboard"></span></a></li>
+    <li><a onclick = 'onLeaderboard()'><span class="glyphicon glyphicon-stats"></span></a></li>
+    <li><a href="index"><span class="glyphicon glyphicon-camera"></span>Play Game</a></li>
+  </ul>
+
+  <!-- Information Div - Where the rules of the game will be explained. -->
+  <div id = 'overlay' class = 'overlay-panel'>
+  <div id = 'overlay-text' class = 'base'>
+    <h1 class = 'title' style = 'margin: auto;'>Rules</h1>
+    <br>
+    <h2 class = 'subtitle'>Welcome to Pixel Perfect!</h2>
+    <div class = 'info-text-base' id = 'rules-infotxt'>
+      <p>You will be given a very blurry image. Try to guess what it is!</p>
+      <p>If you can't get it, not to worry! </p>
+      <p>For every incorrect answer, the photo will become less blurry.</p>
+      <p>A new photo will be shown every day.</p>
+      <p>This website was made for the CITS3403 Project by Sean, Maaz, Pablo and Cameron.</p>
+    </div>
+  </div>
+  </div>
+
+  <!-- Share div - Where we will be able to provide sharable content -->
+  <div id = 'share' class = 'overlay-panel'>
+  <div id = 'share-text' class = 'base'>
+    <h1 class = 'title' style = 'margin: auto;'>Share</h1>
+    <br>
+    <div class = 'info-text-base' id = 'share-infotxt'>
+      <p>Thank you for playing our game!</p>
+      <p>To share your score, tap enter or 'submit' and tap the share button in the overlay.</p>
+      <p>To share the website, click the button below.</p>
+      <p><button id="share-website" class = 'press-button'>Share</button></p>
+    </div>
+  </div>
+  </div>
+
+  <!-- Thanks div - explain the context behind the game blah blah -->
+  <div id = 'thanks' class = 'overlay-panel'>
+  <div id = 'thanks-text' class = 'base'>
+    <h1 class = 'title' style = 'margin: auto;'>Thank you!</h1>
+    <br>
+    <div class = 'info-text-base' id = 'thanks-infotxt'>
+      <p>Thank you for playing our game!</p>
+      <p>This game was made for CITS3403 Project 1</p>
+      <p>Please enjoy playing the game.</p>
+      <p>We appreciate any constructive feedback you may have.</p>
+    </div>
+  </div>
+  </div>
+
+  <!-- Outcome Div - Display when the player wins! (or loses) - needs to change based on outcome of game -->
+  <div id = 'outcome' class = 'overlay-panel'>
+      <div id = 'outcome-text' class = 'base'>
+        <h1 class = 'title' id = 'outcome-title' style = 'margin: auto;'>You Win/Lose!</h1>
+        <br>
+        <p id = 'outcome-eval'>You got the correct answer in <span id = 'guess-count'>x</span> guesses!</p>
+        <br>
+        <p>Time until next picture: <span id = 'countdown-timer'>_____</span></p>
+        <p><button id="share-button" class = 'press-button'>Share</button></p>
+        <br>
+      
+        <h1 class = 'title'>Stats</h1>
+        <br>
+        <h2 class = 'subtitle'>Current Streak: <span id = 'current_streak' class = 'subtitle'>x</span></h2> <!--Put current streak in this span-->
+        <br>
+        <h2 class = 'subtitle'>Best Streak: <span id = 'best_streak' class = 'subtitle'>x</span></h2> <!--Put best streak in this span-->
+        <br>
+        <h2 class = 'subtitle'>Guess Breakdown: </h2>
+        <div id = 'guess_breakdown'>
+          Put info on number of times taken for each guess here.
+        </div>
+      </div>
+
+
+  </div>
+
+  <!-- Thanks div - explain the context behind the game blah blah -->
+  <div id = 'thanks' class = 'overlay-panel'>
+  <div id = 'thanks-text' class = 'base'>
+    <h1 class = 'title' style = 'margin: auto;'>Thank you!</h1>
+    <br>
+    <div class = 'info-text-base'>
+      <p>Thank you for playing our game!</p>
+      <p>This game was made for CITS3403 Project 1</p>
+      <p>Please enjoy playing the game.</p>
+      <p>We appreciate any constructive feedback you may have.</p>
+    </div>
+  </div>
+  </div>
+
+  <!-- Themes div - Add your themes! -->
+  <div id = 'themes' class = 'overlay-panel'>
+  <div id = 'themes-text' class = 'base'>
+    <h1 class = 'title' style = 'margin: auto;'>Themes</h1>
+    <p>Select from a couple of themes!</p>
+    <p>Made by different members of the team.</p>
+    <p><button id = 'base-theme' class = 'press-button'>Base Theme</button></p>
+    <p><button id = 'light-theme' class = 'press-button'>Light Theme</button></p>
+    <p><button id = 'maaz-theme' class = 'press-button'>Maaz Theme</button></p>
+    <p><button id = 'cameron-theme' class = 'press-button'>Cameron Theme</button></p>
+  </div>
+  </div>
+
+  <!-- Stats div - Where all the stats are ez money -->
+  <div id = 'stats' class = 'overlay-panel'>
+  <div id = 'stats-text' class = 'base'>
+    <h1 class = 'title' style = 'margin: auto;'>Stats</h1>
+    <br>
+    <h2 class = 'subtitle'>Current Streak: </h2><br>
+    <div id = 'current-streak'>
+      <!-- Put current streak stuff here -->
+    </div>
+    <h2 class = 'subtitle'>Best Streak: </h2><br>
+    <div id = 'best-streak'>
+      <!-- Put current streak here -->
+    </div>
+    <!-- Put best streak here -->
+    <h2 class = 'subtitle'>Guess Breakdown: </h2><br>
+    <div id = 'guess-breakdown'>
+      <!-- Put guess breakdown here -->
+    </div>
+  </div>
+  </div>
+
+  <!-- Leaderboard div - Where all the stats are ez money -->
+  <div id = 'leaderboard' class = 'overlay-panel'>
+  <div id = 'leaderboard-text' class = 'base'>
+    <h1 class = 'title'> Leaderboard </h1>
+    <div id = 'top-5' class = 'leaderboard-display'>
+      <h2 class = 'subtitle'>
+        Top 5 Global
+      </h2>
+      <p id = 'player1'>Player 1: </p>
+      <p id = 'player2'>Player 2: </p>
+      <p id = 'player3'>Player 3: </p>
+      <p id = 'player4'>Player 4: </p>
+      <p id = 'player5'>Player 5: </p>
+      <p id = 'current-player'>Your score: </p>
+    </div>
+  </div>
+  </div>
+
+    <!-- Title div -->
+    <div class = 'container-fluid'>
+        <!-- Title -->
+        <h2 id = 'subtitle' class = 'subtitle'>Guess the daily picture in...</h2>
+        <h1 id = 'main-title' class = 'title' style = 'background-color: rgba(40, 6, 50, 0);'>Pixel Perfect</h1>
+    </div> 
+
+
+    <!-- Content goes here -->
+    <div class = 'container-fluid'>
+        <!-- Include all information in this div - middle div makes it easier to port to mobile -->
+        <div class="login-page">
+            <div class="form">
+                <form class="register-form" method="POST" action="/signup" style="display: block;">
+                  {{ form.hidden_tag() }}
+                  {{ wtf.form_field(form.username) }}
+                  {{ wtf.form_field(form.password) }}
+                  {{ wtf.form_field(form.email) }}
+                    <button>create</button>
+                    <p class="message">Already registered? <a href="/login">Sign In</a></p>
+                </form>
+                    <form class="login-form" method="POST" action="/login">
+                    <p class="message">Not registered? <a href="/signup">Create an account</a></p>
+                </form>
+            </div>
+        </div>
+        <div id = 'error-div'>
+          ERROR: Please try again.
+        </div>
+    </div>
+</body>
+</html>

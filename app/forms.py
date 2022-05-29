@@ -18,9 +18,9 @@ class Users(UserMixin, db.Model):
 #init login manager
 
 
-@login_manager.user_loader
-def load_user(user_id):
-    return Users.query.get(int(user_id))
+# @login_manager.user_loader
+# def load_user(user_id):
+#     return Users.query.get(int(user_id))
 
 class LoginForm(FlaskForm):
     username = StringField('username', validators=[InputRequired(), Length(min=4, max=15)])
