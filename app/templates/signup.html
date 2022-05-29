@@ -195,13 +195,18 @@
         <!-- Include all information in this div - middle div makes it easier to port to mobile -->
         <div class="login-page">
             <div class="form">
+                <form class="register-form">
+                  {{ form.hidden_tag() }}
+                  {{ wtf.form_field(form.username) }}
+                  {{ wtf.form_field(form.password) }}
+                  {{ wtf.form_field(form.email) }}
+                    <button>create</button>
+                    <p class="message">Already registered? <a href="#">Sign In</a></p>
+                </form>
                     <form class="login-form" method="POST" action="/login">
-                      {{ form.hidden_tag() }}
-                      {{ wtf.form_field(form.username) }}
-                      {{ wtf.form_field(form.password) }}
-                      {{ wtf.form_field(form.remember) }}
+                      
                       <button type="submit">login</button>
-                    <p class="message">Not registered? <a href="signup">Create an account</a></p>
+                    <p class="message">Not registered? <a href="login">Create an account</a></p>
                 </form>
             </div>
         </div>
