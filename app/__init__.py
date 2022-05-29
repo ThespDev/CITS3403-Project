@@ -34,12 +34,13 @@ from app import PixelPerfect
 
 # def populate():
 ARRAY = os.listdir('/home/seandre/Documents/git/CITS3403-Project/app/static/images/landscapes') #Array of Images List
+print(ARRAY)
 present = datetime.today()
 for i in range(len(ARRAY)):
     time = present+timedelta(i)
     dates = datetime.strftime(time, "%d/%m/%Y")
     # print(dates)
-    img = Images(name=ARRAY[i],answer=ARRAY[i][:-4],date=dates, pf="1/1/1/1/1")
+    img = Images(id,name=ARRAY[i],answer=ARRAY[i][:-4],date=dates, pf="1/1/1/1/1")
     db.session.add(img)
     db.session.commit()
 # populate()
