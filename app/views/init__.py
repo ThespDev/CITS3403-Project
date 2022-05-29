@@ -1,14 +1,16 @@
 import os
 from flask import Flask
-from flask import Config, Blueprint
+from flask import Config
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
 
-from flask_login import LoginManager
 #Sean
-from flask_bootstrap import Bootstrap
-from config import Config
-from datetime import datetime, timedelta
+# from flask_bootstrap import Bootstrap
+# from .database import db
+# from config import Config
+# from app.models import Images
+# from datetime import datetime, timedelta
+# from .routes import site, login_manager
 
 
 app= Flask(__name__)
@@ -23,22 +25,16 @@ app.config['SQLALCHEMY_DATABASE_URI']= SQLALCHEMY_DATABASE_URI
 
 
 db = SQLAlchemy(app)
+# db.init_app(app)
 migrate=Migrate(app,db)
-
-# from forms import *
-login_manager = LoginManager()
-
-site = Blueprint('site', __name__, url_prefix="",template_folder='templates')
-Bootstrap(app)
-login_manager.init_app(app)
-login_manager.login_view  = 'login'
+# Bootstrap(app)
+# login_manager.init_app(app)
+# login_manager.login_view  = 'login'
 # app.register_blueprint(site)
 
 from app import routes,api,models
 from .models import User,Player_history,UserMixin,Images
 from app import PixelPerfect
-app.register_blueprint(site)
-
 # PixelPerfect.initialiseGame()
 
 

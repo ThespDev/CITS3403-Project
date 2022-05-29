@@ -1,20 +1,19 @@
-
 from datetime import datetime
-from flask import render_template, url_for,redirect,url_for
-from app import app,site,db,login_manager
+from flask import render_template, url_for
+from app import app
 from flask import request
 from config import Config
-from .models import User, Player_history
-
-# from flask import redirect, url_for, Config, render_template
-from flask_bootstrap import Bootstrap
-from flask_wtf import FlaskForm 
-from wtforms import StringField, PasswordField, BooleanField
-from wtforms.validators import InputRequired, Email, Length
-from werkzeug.security import generate_password_hash, check_password_hash
-from flask_login import UserMixin, login_user, login_required, logout_user, current_user
-# from app import db
-from .forms import LoginForm, RegisterForm, Users, login_manager
+# from .models import User, Player_history
+# from flask import Blueprint,redirect, url_for, Config, render_template
+# from flask_bootstrap import Bootstrap
+# from flask_wtf import FlaskForm 
+# from wtforms import StringField, PasswordField, BooleanField
+# from wtforms.validators import InputRequired, Email, Length
+# from werkzeug.security import generate_password_hash, check_password_hash
+# from flask_login import UserMixin, login_user, login_required, logout_user, current_user
+# from .database import db
+# from .forms import LoginForm, RegisterForm, Users, login_manager
+# site = Blueprint('site', __name__, url_prefix="",template_folder='templates')
 
 
 @site.route('/', methods=['GET','POST'])
@@ -67,5 +66,5 @@ def signup():
 @login_required
 def dash():
     headings = ["ID", "Username", "Answer_History", "Answer_Count","img_id","DateSubmitted"]
-    hist = Player_history.query.filter_by(username=current_user.username) #Returns Rows
+    hist = User_Hist.query.filter_by(username=current_user.username) #Returns Rows
     return render_template('dashboard', name=current_user.username, User_Hist=hist, headings=headings)
