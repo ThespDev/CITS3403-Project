@@ -37,7 +37,8 @@ def login():
                 return redirect(url_for('dash'))
 
                 #username or password doesnt exist
-        return redirect(url_for('login'))
+        return "no good"
+        # return redirect(url_for('login'))
 
     #not submitted render template
     return render_template('login.html', form=form) # Pass form to template for form object to be used in login.html
