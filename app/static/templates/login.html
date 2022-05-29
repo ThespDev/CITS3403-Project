@@ -1,7 +1,5 @@
 <!-- Setting up the basic look of the page - including menu, sidebar, location for keyboard, etc -->
-{% block content %}
 {% import "bootstrap/wtf.html" as wtf%}
-{% endblock %}
 
 <!DOCTYPE html>
 <html lang="en">
@@ -192,17 +190,16 @@
         <h1 id = 'main-title' class = 'title' style = 'background-color: rgba(40, 6, 50, 0);'>Pixel Perfect</h1>
     </div> 
 
-    
+
     <!-- Content goes here | Add wtf forms for both signup and login page-->
     <div class = 'container-fluid'>
         <!-- Include all information in this div - middle div makes it easier to port to mobile -->
         <div class="login-page">
             <div class="form">
-                <form class="register-form">
-                    {{ signform.hidden_tag() }}
-                    {{ wtf.signform.username }}
-                    {{ wtf.signform.email }}
-                    {{ wtf.signform.password }}
+                <form class="register-form" method="GET" action="/signup">
+                    <input type="text" placeholder="name"/>
+                    <input type="password" placeholder="password"/>
+                    <input type="text" placeholder="email address"/>
                     <button>create</button>
                     <p class="message">Already registered? <a href="#">Sign In</a></p>
                     </form>

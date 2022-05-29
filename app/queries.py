@@ -1,5 +1,6 @@
-# from app.__init__ import db
-# from app.models import Images
+from .app.app import db
+import os
+from app.models import Images
 from datetime import datetime, timedelta
 today = datetime.today()
 
@@ -11,12 +12,15 @@ def get_image(date):
 
 get_image(today)
 
-ARRAY = [6,5,8,6,4,5,3] #Array of Images List
-
+basedir= os.path.abspath(os.path.dirname('static'))
+print(basedir)
+path = os.path.dirname('static')
+ARRAY = os.listdir(path) #Array of Images List
+print(ARRAY)
 #Inserts array of Images names into database with corresponding dates
 def populater():
     present = datetime.today()
     for i in range(len(ARRAY)):
         print(present+timedelta(i))
 
-populater()
+# populater()
