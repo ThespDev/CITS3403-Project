@@ -1,5 +1,6 @@
 # from winreg import QueryReflectionKey
 from email.mime import image
+from unicodedata import name
 from flask import app
 from pathlib import Path
 from PIL import Image
@@ -63,17 +64,14 @@ def create_new_directory():
     pass
 def create_new_puzzle():
 
-    today=datetime.strftime(datetime.now() - timedelta(1), '%m-%d-%Y')
+    today=datetime.strftime(datetime.now() - timedelta(0), '%m-%d-%Y')
+    print(today)
     remove_directory()
     create_new_directory()
-    # image=[(img path,today)]pull image frmo db using (today)
-    image= Images.query.filter_by(date=today)
-    #img.img_name
-    #img.
-    #img.pixelfactor
-    print(image)
-    # populate_directories(image)
-    
+    image= Images.query.filter_by(date=today).first()
+    populate_directories([image])
+    print(image.name)
+
 
 def get_dates():
     dates=[]
@@ -128,17 +126,17 @@ def get_images(dates):
     images=[]
     for date in dates:
         # pull image from db
-        #image= (imagePath,date,pf)
-        pass
+        image= Images.query.filter_by(date).first()
+        images.append(image)
 
-    return []
+    return images
 
 
 
 
 def populate_directories(images):
     if len(images)==1: 
-        pass
+        pixelelate(images)
     else:
         print('im here')
         pixelelate(images)
@@ -146,12 +144,7 @@ def populate_directories(images):
 def initialiseGame():
     dates=get_dates
     create_directories() # create 3 directories with yesterday,today's, and tomorrow's dates in that order
-    #images=get_images(dates)# return a list of tuples in the format (path to image,date associated with image,pixelFactor)
-    images=[ ('bmo.png','05-24-2022',[2,4,6,8,10]),
-            ('finn.png','05-25-2022',[2,4,6,8,10]),
-            ('has.jpg','05-26-2022',[2,4,6,8,10])
-
-    ]
+    images=get_images(dates) #return a list of image obje in the format (path to image,date associated with image,pixelFactor)
     populate_directories(images) # populate directories with pixelated images
    
 
@@ -159,14 +152,16 @@ def initialiseGame():
 def pixelelate(images): #@params list of tupples [(image name(string),date(string),pixel factor(lst of ints))]
     print('in pixel')
     for image in images:
-        image_name=image[0]
-        image_date=image[1]
-        pixel_factor=image[2]
+        image_name=image.name
+        image_date=image.date
+        pixel_factor=image.pf.split('/')
+        pixel_factor=[int(pf) for pf in pixel_factor ]
+        print(pixel_factor)
         img_path= UPLOAD_FOLDER+'images/'+image_name
-        print(img_path)
-        im = Image.open(img_path)
 
+        im = Image.open(img_path)
         pix = im.load()
+
         row=im.size[0]
         col= im.size[1]
         count=len(pixel_factor)+1
@@ -179,7 +174,7 @@ def pixelelate(images): #@params list of tupples [(image name(string),date(strin
                         doShit(pf,i,j,pix)
             count-=1
             print(image_date)
-            destination=UPLOAD_FOLDER+image_date+'/'+str(count)+image_name[-4:] #UPLOAD_FOLDER+image_date+'/'+str(count)+image_name[-4:]
+            destination=UPLOAD_FOLDER+image_date+'/'+str(count)+image_name[-4:]
             print(destination)
             im.save(destination)
 

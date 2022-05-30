@@ -41,9 +41,8 @@ def login():
 
     #not submitted render template
     return render_template('login.html', form=form) # Pass form to template for form object to be used in login.html
-
-
-@app.route('/signup', methods=['GET','POST'])
+# @app.route('/signup.html')
+@app.route('/signup', methods=['GET'])
 def signup():
     form = RegisterForm()
     if form.validate_on_submit():
@@ -57,4 +56,5 @@ def signup():
         db.session.commit()
         #Some arbritray response
         return '<h1> Successfully added New User! </h1>'
-    return render_template('signup', form=form)
+    return render_template('signup.html', form=form)
+
