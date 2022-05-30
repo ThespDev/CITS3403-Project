@@ -22,7 +22,7 @@ migrate=Migrate(app,db)
 
 from app import routes,api,models
 from .models import User,Player_history,UserMixin,Images
-from app import PixelPerfect
+# from app import PixelPerfect
 # PixelPerfect.initialiseGame()
 
 

@@ -2,3 +2,8 @@ flask
 flask-sqlalchemy
 pillow
 Werkzeug
+flask_bootstrap
+flask_login
+flask_migrate
+flask_wtf
+email_validator
