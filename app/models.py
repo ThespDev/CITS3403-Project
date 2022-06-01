@@ -21,7 +21,7 @@ class User(db.Model,UserMixin):
         self.username = username
         self.email = email
         self.password_hash = generate_password_hash(password)
-
+        print(password)
 
     def set_password(self,password):
         self.password_hash=generate_password_hash(password)
@@ -29,8 +29,12 @@ class User(db.Model,UserMixin):
     
     
     def __repr__(self):
+<<<<<<< HEAD
         # return f'<User {self.username}>'
         return f'<Image {self.username}, answer {self.email}>'
+=======
+        return f'<Usr {self.username}>'
+>>>>>>> camfroth-loginregisterONSAMEPAGEPOG
     
     def autheticate_password(self, password):
         return check_password_hash(self.password_hash,password)
