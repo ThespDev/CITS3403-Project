@@ -16,27 +16,7 @@ UPLOAD_FOLDER=Config.UPLOAD_FOLDER
 
 c=[0,0,0] # will store average r,g,b values for each pf_block i.e pf*pf
 
-# app.config["SQLALCHEMY_DATABASE"] = "sqlite///" +"../database.db"
-
-# '''
-# sqlite3 database.db
-# .tables
-# select * from player__history
-
-# for i in range(5):
-#     img = player_history(date=,username=,...)
-#     db.session.add(img)
-#     db.session.commit()
-
-
-
-# img = User.query.select(filter_by(id=1))
-# for images in img:
-#     print(f'{images.id}')
-
-# '''
-
-def remove_directory():  # will remove puzzle 2 from today
+def remove_directory():  # will remove puzzle with the day before yesteday's date
 
     remove_date=datetime.strftime(datetime.now() - timedelta(2), '%m-%d-%Y')
     path=UPLOAD_FOLDER+ remove_date
@@ -115,7 +95,7 @@ def assignAvg(k,Xoffset,Yoffset,pix,avg):
             pix[i+Xoffset,j+Yoffset]=tuple(avg)
             
             
-def doShit(k,i,j,pix):
+def pixelate(k,i,j,pix):
     avg=iterateThroughKbox(k,i*k,j*k,pix)
     assignAvg(k,(i*k),j*k,pix,avg)
     c[0]=0
@@ -124,9 +104,12 @@ def doShit(k,i,j,pix):
 
 def get_images(dates):
     images=[]
+    print(dates)
     for date in dates:
-        # pull image from db
-        image= Images.query.filter_by(date).first()
+        print(date)
+        image= Images.query.filter_by(date=date).first()
+        
+        print(image)
         images.append(image)
 
     return images
@@ -142,8 +125,9 @@ def populate_directories(images):
         pixelelate(images)
 
 def initialiseGame():
-    dates=get_dates
+    dates=get_dates()
     create_directories() # create 3 directories with yesterday,today's, and tomorrow's dates in that order
+    print("immhere",dates)
     images=get_images(dates) #return a list of image obje in the format (path to image,date associated with image,pixelFactor)
     populate_directories(images) # populate directories with pixelated images
    
@@ -171,7 +155,7 @@ def pixelelate(images): #@params list of tupples [(image name(string),date(strin
                 block_col=col//pf
                 for i in range(block_row):
                     for j in range(block_col):
-                        doShit(pf,i,j,pix)
+                        pixelate(pf,i,j,pix)
             count-=1
             print(image_date)
             destination=UPLOAD_FOLDER+image_date+'/'+str(count)+image_name[-4:]
