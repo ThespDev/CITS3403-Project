@@ -48,16 +48,19 @@ def login():
                         login_user(user, remember=form1.username.data)
                         flash('Successfully loggin in')
                         return redirect(url_for('index'))
-                    flash('Password was incorrect')
-                    return 'fuck'
-                    # return redirect(url_for('login'))
-                flash('Username was incorrect or does not exist')
+                    flash('Password or Username was incorrect')
+                    return redirect(url_for('login'))
+                flash('Username does not exist')
                 return redirect(url_for('login'))
-                # return 'what'
             
             if request.form['type'] == "signup":
-                #register signin
-                #Insert Data into DB
+                if isExist(form2.username.data,'username'):
+                    flash("ussername already taken")
+                    return redirect(url_for('login'))
+                if isExist(form2.email.data,'email'):
+                    flash("email already in use")
+                    return redirect(url_for('login'))
+                isExist(form2.email.data,'email')
                 user = User(form2.username.data, form2.password.data, form2.email.data)
                 db.session.add(user)
                 db.session.commit()
@@ -71,5 +74,13 @@ def login():
         flash('Error has occured...')
         return 'Error has occured during validate_on_submit()'
 
-    return render_template('login.html', form2 = form2, form1=form1) # Pass form to template for form object to be used in login.html
-# @app.route('/signup.html')
+    return render_template('login.html', form2 = form2, form1=form1) 
+def isExist(item,data): #item can be either username or email
+    print("in exist",data)
+    if data =='username':
+        user = User.query.filter_by(username=item).first() 
+        return True
+    elif data== 'email':
+        user = User.query.filter_by(email=item).first() 
+        return True
+    return False
