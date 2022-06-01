@@ -6,7 +6,7 @@ __pycache__/
 
 # Local History for Visual Studio Code
 .history/
-
+.db
 # Visual Studio History (VSHistory) files
 .vshistory/
 # Python Tools for Visual Studio (PTVS)
