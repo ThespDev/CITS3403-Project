@@ -439,6 +439,8 @@ p {
   color: #EF3B3A;
 }
 
-
-
-
+.alert {
+  width: 40%;
+  margin-left: auto;
+  margin-right: auto;
+}

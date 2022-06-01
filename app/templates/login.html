@@ -1,4 +1,5 @@
 <!-- Setting up the basic look of the page - including menu, sidebar, location for keyboard, etc -->
+{% import "bootstrap/wtf.html" as wtf %}
 
 <!DOCTYPE html>
 <html lang="en">
@@ -182,6 +183,7 @@
   </div>
   </div>
 
+
     <!-- Title div -->
     <div class = 'container-fluid'>
         <!-- Title -->
@@ -189,25 +191,34 @@
         <h1 id = 'main-title' class = 'title' style = 'background-color: rgba(40, 6, 50, 0);'>Pixel Perfect</h1>
     </div> 
 
+    {% for message in get_flashed_messages() %}
+    <div class="alert alert-warning alert-dismissible show" role="alert">
+      {{ message }}
+    </div>
+    {% endfor %}
 
     <!-- Content goes here -->
     <div class = 'container-fluid'>
         <!-- Include all information in this div - middle div makes it easier to port to mobile -->
         <div class="login-page">
             <div class="form">
-                <form class="register-form">
-                    <input type="text" placeholder="name"/>
-                    <input type="password" placeholder="password"/>
-                    <input type="text" placeholder="email address"/>
-                    <button>create</button>
-                    <p class="message">Already registered? <a href="#">Sign In</a></p>  
-                    </form>
+                <form class="register-form" method="POST" action="/login">
+                  <input type="hidden" name="type" value="signup">
+                  {{ form2.hidden_tag() }}
+                  {{ wtf.form_field(form2.username) }}
+                  {{ wtf.form_field(form2.email) }}
+                  {{ wtf.form_field(form2.password) }}
+                  <button type="submit">create</button>
+                  <p class="message">Already registered? <a href="#">Sign In</a></p>  
+                </form>
 
-                    <form class="login-form">
-                    <input type="text" placeholder="username"/>
-                    <input type="password" placeholder="password"/>
-                    <button>login</button>
-                    <p class="message">Not registered? <a href="#">Create an account</a></p>
+                <form class="login-form" method="POST" action="/login">
+                  <input type="hidden" name="type" value="login">
+                  {{ form1.hidden_tag() }}
+                  {{ wtf.form_field(form1.username) }}
+                  {{ wtf.form_field(form1.password) }}
+                  <button type="submit">login</button>
+                  <p class="message">Not registered? <a href="#">Create an account</a></p>
                 </form>
             </div>
         </div>

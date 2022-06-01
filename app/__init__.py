@@ -15,10 +15,10 @@ basedir= os.path.abspath(os.path.dirname(__file__))
 SQLALCHEMY_DATABASE_URI='sqlite:///' + os.path.join(basedir,'app.db')
 app.config['SQLALCHEMY_DATABASE_URI']= SQLALCHEMY_DATABASE_URI
 
+
 bootstrap = Bootstrap(app)
 db = SQLAlchemy(app)
 migrate=Migrate(app,db)
-
 
 from app import routes,api,models
 from .models import User,Player_history,UserMixin,Images
