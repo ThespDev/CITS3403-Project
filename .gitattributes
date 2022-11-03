@@ -2,4 +2,4 @@
 *.css linguist-vendored
 *.mako linguist-vendored
 *.sh linguist-vendored
-
+.flaskenv linguist-vendored
